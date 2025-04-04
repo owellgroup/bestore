@@ -1,14 +1,20 @@
-# Start from an OpenJDK 23 image
+# Use an official JDK 23 image
 FROM eclipse-temurin:23-jdk
 
-# Set the working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy Maven wrapper and project files
+# Copy project files
 COPY . /app
+
+# Grant execute permissions to Maven wrapper
+RUN chmod +x ./mvnw
 
 # Package the application
 RUN ./mvnw clean package -DskipTests
 
-# Run the app
-ENTRYPOINT ["java", "-jar", "target/beststore-0.0.1-SNAPSHOT.jar"]
+# Expose port
+EXPOSE 8080
+
+# Run the Spring Boot app
+CMD ["java", "-jar", "target/beststore-0.0.1-SNAPSHOT.jar"]
