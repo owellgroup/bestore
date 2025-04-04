@@ -13,44 +13,44 @@ public class ServiceController {
     private ProductService service;
 
     //post method one at a time
-    @PostMapping("/addProduct")
+    @PostMapping("/api/addProduct")
     public Products addProduct(@RequestBody Products product) {
         return service.saveProduct(product);
     }
 
     //post method in group
-    @PostMapping("/addProducts")
+    @PostMapping("/api/addProducts")
     public List<Products> addProducts(@RequestBody List<Products> products) {
         return service.saveProducts(products);
     }
 
     //Get methods
-    @GetMapping("/products")
+    @GetMapping("/api/products")
     public List<Products> findAllProducts() {
         return service.getProducts();
     }
 
     //get product by ID
-    @GetMapping("/products/{id}")
+    @GetMapping("/api/products/{id}")
     public Products findProductById(@PathVariable int id) {
         return service.getById(id);
     }
 
     //find product by price
-    @GetMapping("/products/{name}")
+    @GetMapping("/api/products/{name}")
     public Products getByName(String name) {
         return service.getByName(name);
     }
 
     //deleting
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/api/delete{id}")
     public Products deleteProduct(@PathVariable int id) {
           return service.deleteProduct(id);
 
     }
 
     //update products
-    @PutMapping("/update")
+    @PutMapping("/api/update")
     public Products updateProducts(@RequestBody Products products) {
         return service.updateProduct(products);
     }
